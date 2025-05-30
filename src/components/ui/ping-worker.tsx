@@ -80,7 +80,7 @@ export function PingWorker() {
     )
 
     for (let i = 3; i >= 1; i--) {
-      setWorkerStates((prev) =>
+      setWorkerStates(() =>
         workers.reduce(
           (acc, worker) => ({
             ...acc,
@@ -92,7 +92,7 @@ export function PingWorker() {
       await new Promise((resolve) => setTimeout(resolve, 1000))
     }
 
-    setWorkerStates((prev) =>
+    setWorkerStates(() =>
       workers.reduce(
         (acc, worker) => ({
           ...acc,
