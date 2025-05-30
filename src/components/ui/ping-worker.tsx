@@ -60,6 +60,7 @@ export function PingWorker() {
         ...prev,
         [worker.id]: { status: "error" },
       }))
+      console.log(error)
     }
   }
 
@@ -77,7 +78,7 @@ export function PingWorker() {
 
     // Countdown
     for (let i = 3; i >= 1; i--) {
-      setWorkerStates((prev) =>
+      setWorkerStates(() =>
         workers.reduce(
           (acc, worker) => ({
             ...acc,
@@ -90,7 +91,7 @@ export function PingWorker() {
     }
 
     // Start pinging
-    setWorkerStates((prev) =>
+    setWorkerStates(() =>
       workers.reduce(
         (acc, worker) => ({
           ...acc,

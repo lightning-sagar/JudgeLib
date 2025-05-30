@@ -3,7 +3,7 @@ import { FloatingNav } from "@/components/ui/floating-navbar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Terminal, Server, Zap, Shield, Users, ExternalLink, CheckCircle } from "lucide-react"
+import { Terminal, Server, Zap, Shield, Users, CheckCircle } from "lucide-react"
 import Link from "next/link"
 import { PingWorker } from "@/components/ui/ping-worker"
 
