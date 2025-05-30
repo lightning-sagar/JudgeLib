@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils"
 
 const workers = [
   { id: 1, name: "Worker 1", url: process.env.NEXT_PUBLIC_WOKRER1 as string },
-  { id: 2, name: "Worker 2", url: process.env.NEXT_PUBLIC_WOKRER2 as string},
-  { id: 3, name: "Worker 3", url: process.env.NEXT_PUBLIC_WOKRER3 as string},
+  { id: 2, name: "Worker 2", url: process.env.NEXT_PUBLIC_WORKER2 as string},
+  { id: 3, name: "Worker 3", url: process.env.NEXT_PUBLIC_WORKER3 as string},
 ]
 
 type WorkerStatus = "idle" | "countdown" | "pinging" | "success" | "error"
@@ -33,12 +33,14 @@ export function PingWorker() {
   )
 
   const pingWorker = async (worker: (typeof workers)[0]) => {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 10000)  
     const startTime = Date.now()
 
     try {
       const response = await fetch(worker.url, {
         method: "GET",
-        signal: AbortSignal.timeout(10000),
+        signal: controller.signal,
       })
 
       const endTime = Date.now()
@@ -60,12 +62,13 @@ export function PingWorker() {
         ...prev,
         [worker.id]: { status: "error" },
       }))
-      console.log(error)
+      console.error("Ping error:", error)
+    } finally {
+      clearTimeout(timeout)
     }
   }
 
   const startPinging = async () => {
-    // Reset all states
     setWorkerStates(
       workers.reduce(
         (acc, worker) => ({
@@ -76,9 +79,8 @@ export function PingWorker() {
       ),
     )
 
-    // Countdown
     for (let i = 3; i >= 1; i--) {
-      setWorkerStates(() =>
+      setWorkerStates((prev) =>
         workers.reduce(
           (acc, worker) => ({
             ...acc,
@@ -90,8 +92,7 @@ export function PingWorker() {
       await new Promise((resolve) => setTimeout(resolve, 1000))
     }
 
-    // Start pinging
-    setWorkerStates(() =>
+    setWorkerStates((prev) =>
       workers.reduce(
         (acc, worker) => ({
           ...acc,
@@ -101,9 +102,9 @@ export function PingWorker() {
       ),
     )
 
-    // Ping all workers simultaneously
     await Promise.all(workers.map((worker) => pingWorker(worker)))
   }
+
 
   const getStatusIcon = (state: WorkerState) => {
     switch (state.status) {
