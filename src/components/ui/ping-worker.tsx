@@ -34,7 +34,7 @@ export function PingWorker() {
 
   const pingWorker = async (worker: (typeof workers)[0]) => {
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 10000)  
+    const timeout = setTimeout(() => controller.abort(), 25000)  
     const startTime = Date.now()
 
     try {
