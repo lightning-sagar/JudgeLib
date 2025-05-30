@@ -78,8 +78,7 @@ export default function MicroservicePage() {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm text-yellow-700">
-                      <strong>Note:</strong> The demo service may experience occasional downtime or restarts as it runs
-                      on a free tier. If you encounter a 502 error, please try again in a few minutes.
+                      <strong>Note:</strong> This demo service runs on a free tier and may experience occasional downtime or restarts. If you encounter a 502 error, please try again in a few minutes or consider pinging the workers
                     </p>
                   </div>
                 </div>
