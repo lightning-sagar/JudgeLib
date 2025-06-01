@@ -23,7 +23,7 @@ export default function HomePage() {
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8 font-light">Plug-n-Play Code Execution Engine</p>
           <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto">
-            Execute code safely and efficiently with built-in sandboxing, queue management, and resource limits. Perfect
+            Execute code safely and efficiently with built-in queue management, and resource limits. Perfect
             for coding platforms, educational tools, and automated testing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -196,7 +196,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Timeout & Memory Limits</h3>
               <p className="text-gray-600">
-                Protect your system with configurable execution timeouts and memory limits for safe sandboxing.
+                Protect your system with configurable execution timeouts and memory limits.
               </p>
             </div>
           </div>
