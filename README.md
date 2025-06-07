@@ -9,7 +9,7 @@
 
 Link - [Doc](https://judge-lib-mg91.vercel.app/)
 
-also make sure the workers are running as I am using Render, so the worker might be on sleep, and same for microservices, so that go the to [Doc](https://judge-lib-mg91.vercel.app/npm) in this try to ping worker (bascially we are trying to wake up the workers) and for microservice try to hit/open [link](https://judge-microser.onrender.com) so that Microservice will also be active 
+Make sure that the workers are running, you can check it while ping the worker [here](https://judge-lib-mg91.vercel.app/npm), as I am using render, workers can be in sleep, also while using the microservice try to hit/open [link](https://judge-microser.onrender.com) so that Microservice will also be active.
 
 ---
 
