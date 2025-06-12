@@ -1,0 +1,14 @@
+name: Ping Cron Endpoint
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl Ping API
+        run: |
+          curl -X GET https://judge-lib-mg91.vercel.app/api/cron 

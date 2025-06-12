@@ -1,7 +1,3 @@
-export const config = {
-  runtime: 'edge',
-};
-
 const links = [
   'https://workers-judge.onrender.com/ping',
   'https://workers-judge-1.onrender.com/ping',
