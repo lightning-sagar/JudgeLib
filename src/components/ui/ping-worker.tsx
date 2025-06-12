@@ -10,6 +10,7 @@ const workers = [
   { id: 1, name: "Worker 1", url: process.env.NEXT_PUBLIC_WOKRER1 as string },
   { id: 2, name: "Worker 2", url: process.env.NEXT_PUBLIC_WORKER2 as string},
   { id: 3, name: "Worker 3", url: process.env.NEXT_PUBLIC_WORKER3 as string},
+  { id: 4, name: "Microservice", url: process.env.NEXT_PUBLIC_Microservice  as string},
 ]
 
 type WorkerStatus = "idle" | "countdown" | "pinging" | "success" | "error"
@@ -34,7 +35,7 @@ export function PingWorker() {
 
   const pingWorker = async (worker: (typeof workers)[0]) => {
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 25000)  
+    const timeout = setTimeout(() => controller.abort(), 30000)  
     const startTime = Date.now()
 
     try {
