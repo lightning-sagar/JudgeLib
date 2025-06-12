@@ -5,7 +5,7 @@ const links = [
   'https://judge-microser.onrender.com/',
 ];
 
-export async function GET(request: Request) {
+export async function GET() {
 
   const results = await Promise.all(
     links.map(async (url) => {
