@@ -3,10 +3,9 @@ name: Ping Cron Endpoint
 on:
   schedule:
     - cron: '*/1 * * * *'  
-  workflow_dispatch:
 
 jobs:
-  ping:
+  cron:
     runs-on: ubuntu-latest
     steps:
       - name: Curl Ping API
