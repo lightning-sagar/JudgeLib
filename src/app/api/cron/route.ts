@@ -6,7 +6,6 @@ const links = [
 ];
 
 export async function GET() {
-
   const results = await Promise.all(
     links.map(async (url) => {
       try {
@@ -18,7 +17,7 @@ export async function GET() {
     })
   );
 
-  return new Response(JSON.stringify({ results }), {
+  return new Response(JSON.stringify({ result: results }), {
     headers: { 'Content-Type': 'application/json' },
     status: 200,
   });
