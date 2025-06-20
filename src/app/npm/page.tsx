@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { FloatingNav } from "@/components/ui/floating-navbar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -27,11 +27,14 @@ export default function NPMPage() {
               npm install lib-judge
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3"
-               onClick={() => {
-                  const el = document.getElementById("installation");
-                  el?.scrollIntoView({ behavior: "smooth" });
-                }}>
+              <Button
+                size="lg"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3"
+                onClick={() => {
+                  const el = document.getElementById("installation")
+                  el?.scrollIntoView({ behavior: "smooth" })
+                }}
+              >
                 <Download className="w-4 h-4 mr-2" />
                 Quick Start
               </Button>
@@ -44,7 +47,7 @@ export default function NPMPage() {
                 <ExternalLink className="w-4 h-4 mr-2" />
                 View on NPM
               </Button>
-              <PingWorker/>
+              <PingWorker />
             </div>
           </div>
         </div>
@@ -64,15 +67,15 @@ export default function NPMPage() {
                 Install and start executing code immediately with sensible defaults and automatic setup.
               </p>
             </div>
-             <div className="text-center">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-orange-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Horizontal Scaling</h3>
-                <p className="text-gray-600">
-                  Scale your code execution capacity by deploying multiple instances behind a load balancer.
-                </p>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-orange-500" />
               </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Horizontal Scaling</h3>
+              <p className="text-gray-600">
+                Scale your code execution capacity by deploying multiple instances behind a load balancer.
+              </p>
+            </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-orange-500" />
@@ -131,16 +134,45 @@ export default function NPMPage() {
                   <h4 className="font-semibold text-gray-900 mb-2">JavaScript (ES Modules)</h4>
                   <div className="bg-gray-900 rounded-lg p-4 text-sm overflow-x-auto">
                     <pre className="text-blue-400">
-                      {`import { JudgeLib } from 'lib-judge';
+                      {`import fs from 'fs';
+import path from 'path';
+import { judge } from 'lib-judge';
 
+// Assuming code is a string of C++ source code
+const code = \`
+#include<iostream>
+#include<vector>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    for(int i = 0;i<n;i++){
+        cin>>v[i];
+    }
+    int c = 0;
+    for(auto it:v){
+        c+=it;
+    }
+    cout<<c;
+    return 0;
+}\`;
+
+// Save to a temporary file
+const tmpDir = './tmp';
+if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir);
+const tmpPath = path.join(tmpDir, \`code_\${Date.now()}.cpp\`);
+fs.writeFileSync(tmpPath, code, 'utf-8');
+
+// Call judge with the correct file path
 const result = await judge({
-  codePath: tmpPath, //path of the file
+  codePath: tmpPath,//path of the file
   ques_name: 'sum of array',
   input: '5 1 2 3 4 5 ### 3 1 2 3 ### 2 1 2',
   output: '15 ### 6 ### 3',
-  timeout: 2,
-  sizeout: 64,
-  language:'py'
+  language:'cpp',
+  timeout: '2',
+  sizeout: '64',
 });
 
 console.log(result);`}
